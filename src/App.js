@@ -30,16 +30,19 @@ class App extends Component {
     .then(users => this.setState({monsters:users}))
   }
   render() {
+    const {monsters, searchField} = this.state;
+    console.log(monsters, searchField);
+    const filteredMonsters = monsters.filter(monster => monster.name.toLowerCase().includes(searchField.toLowerCase()))
     return (
       <div className="App">
         <input type='search' placeholder='search monster' onChange={e=> {
-          this.setState({searchField:e.target.value}).then(console.log(this.state ))
+          this.setState({searchField:e.target.value})
           
         }}
         >
           
           </input>
-        <CardList monsters={this.state.monsters}/>
+        <CardList monsters={filteredMonsters}/>
           
         
     </div>
