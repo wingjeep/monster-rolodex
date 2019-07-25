@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import {CardList} from './components/card-list/card-list.component'
-
+import SearchBox from './components/search-box/search-box.component';
 class App extends Component {
 
   constructor(){
@@ -23,6 +23,10 @@ class App extends Component {
       ]
     }
   }
+  // const handleCHange = function(e) {
+  //   this.setState({searchField:e.target.value})
+    
+  // }
   componentDidMount(){
     console.log('did mount');
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -35,13 +39,10 @@ class App extends Component {
     const filteredMonsters = monsters.filter(monster => monster.name.toLowerCase().includes(searchField.toLowerCase()))
     return (
       <div className="App">
-        <input type='search' placeholder='search monster' onChange={e=> {
-          this.setState({searchField:e.target.value})
-          
-        }}
-        >
-          
-          </input>
+       <SearchBox
+        placeholder="Search Monster"
+        handleChange = {e => this.setState({searchField:e.target.value})}
+       />
         <CardList monsters={filteredMonsters}/>
           
         
